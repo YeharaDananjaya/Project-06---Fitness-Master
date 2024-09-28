@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensure proper scaling on mobile -->
-    <link rel="stylesheet" href="styles/style.css"> <!-- External CSS for Navbar -->
     <title>Fitness Master</title>
 </head>
-<body>
-    <header>
-        <div class="container">
+<body style="margin: 0; font-family: Arial, sans-serif; ">
+    <header style="background-color: #500a0a; padding: 15px 0;">
+        <div style="max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
             <div class="logo">
-                <a href="#">Fitness Master</a>
+                <a href="#" style="text-decoration: none; color: white; font-size: 24px; font-weight: bold;">Fitness Master</a>
             </div>
             <nav>
-                <ul class="nav-links">
-                    <li><a href="home.php">Home</a></li>
-                    <li><a href="about.php">Get a Coach</a></li>
-                    <li><a href="tips.php">Tips</a></li>
-                    <li><a href="kids.php">Kids</a></li>
-                    <li><a href="logout.php">Logout</a></li>
+                <ul style="list-style: none; padding: 0; display: flex; gap: 20px;">
+                    <li><a href="home.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s;">Home</a></li>
+                    <li><a href="about.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s;">Get a Coach</a></li>
+                    <li><a href="tips.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s;">Tips</a></li>
+                    <li><a href="manage_feedbacks.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s;">Feedbacks</a></li>
+                    <li><a href="logout.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s;">Logout</a></li>
+                    
                 </ul>
             </nav>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+            <div class="burger" style="display: none; cursor: pointer;">
+                <div style="width: 25px; height: 3px; background: white; margin: 4px 0; transition: 0.4s;"></div>
+                <div style="width: 25px; height: 3px; background: white; margin: 4px 0; transition: 0.4s;"></div>
+                <div style="width: 25px; height: 3px; background: white; margin: 4px 0; transition: 0.4s;"></div>
             </div>
         </div>
     </header>
