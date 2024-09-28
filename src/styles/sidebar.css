@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar-container {
+  width: 250px;
+  height: 100vh;
+  background-color: #1c3d3f;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  overflow: visible; /* Allow dropdowns to be visible outside */
+}
+
+.sidebar-logo img {
+  width: 120px;
+  margin-bottom: 30px;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  margin: 15px 0;
+  position: relative; /* Required for dropdown positioning */
+}
+
+.sidebar-menu li a {
+  color: #fafafa;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px; /* Unified padding for consistency */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover */
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li a.active {
+  background-color: #379d9d;
+  border-radius: 5px;
+  transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+  display: none; /* Hide dropdown by default */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #2b4f4e; /* Slightly different background */
+  border-radius: 5px;
+  position: absolute; /* Absolute positioning for dropdown */
+  left: 100%; /* Position to the right of the dropdown toggle */
+  top: 0; /* Align to the top of the toggle */
+  width: 200px; /* Set the width for the dropdown */
+  z-index: 10; /* Increase z-index to ensure dropdown appears above other elements */
+  opacity: 0; /* Initial opacity for animation */
+  transition: opacity 0.2s ease; /* Smooth transition for dropdown */
+}
+
+.dropdown-menu.show {
+  display: block; /* Show dropdown */
+  opacity: 1; /* Full opacity when shown */
+}
+
+.dropdown-menu li {
+  margin: 0; /* Reset margin for dropdown items */
+}
+
+.dropdown-menu li a {
+  padding: 10px; /* Padding for dropdown items */
+  text-align: left; /* Left align text in dropdown */
+  display: block; /* Make sure it occupies full width */
+  transition: background-color 0.3s ease; /* Transition for background color */
+}
+
+.dropdown-menu li a:hover {
+  background-color: #3b8c8b; /* Darker shade for hover effect */
+}
