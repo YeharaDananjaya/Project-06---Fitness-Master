@@ -1,4 +1,6 @@
 <?php
+// Start the session
+session_start();
 // Include navbar and database connection
 include("navbar.php");
 include("db.php");

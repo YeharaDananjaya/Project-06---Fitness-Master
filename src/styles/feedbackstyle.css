@@ -22,13 +22,13 @@ body {
 
 h1 {
     text-align: center;
-    color: #500a0a;
+    color: #1c3d3f;
     margin-bottom: 20px;
 }
 
 .feedback-message {
     background: #d4edda;
-    color: #155724;
+    color: #1c3d3f;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
@@ -60,7 +60,7 @@ label {
 }
 
 .form-select:focus, .form-input:focus, .form-textarea:focus {
-    border-color: #500a0a;
+    border-color: #1c3d3f;
     outline: none;
 }
 
@@ -70,7 +70,7 @@ label {
 
 .submit-button {
     padding: 10px;
-    background-color: #500a0a;
+    background-color: #1c3d3f;
     color: white;
     border: none;
     border-radius: 5px;
@@ -79,14 +79,14 @@ label {
 }
 
 .submit-button:hover {
-    background-color: #300303;
+    background-color: #152e30;
 }
 
 .link {
     display: block;
     text-align: center;
     margin-top: 20px;
-    color: #500a0a;
+    color: #1c3d3f;
     text-decoration: none;
 }
 
