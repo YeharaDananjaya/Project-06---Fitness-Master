@@ -30,11 +30,15 @@ $result = $stmt->get_result();
     <a href="add_schedule_plan.php" class="add-schedule-button">Add a Schedule</a>
 </div>
 
-
 <div class="container">
     <h1>Your Schedule Plans</h1>
 
-    <table>
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search by Coach or Package" onkeyup="searchFunction()">
+    </div>
+
+    <table id="scheduleTable">
         <thead>
             <tr>
                 <th>Plan ID</th>
@@ -63,5 +67,29 @@ $result = $stmt->get_result();
 </div>
 
 <?php include 'footer.php'; ?>
+
+<script>
+    function searchFunction() {
+        const input = document.getElementById('search');
+        const filter = input.value.toLowerCase();
+        const table = document.getElementById('scheduleTable');
+        const tr = table.getElementsByTagName('tr');
+
+        for (let i = 1; i < tr.length; i++) {
+            let tdCoach = tr[i].getElementsByTagName('td')[1];
+            let tdPackage = tr[i].getElementsByTagName('td')[2];
+            if (tdCoach || tdPackage) {
+                const txtValueCoach = tdCoach.textContent || tdCoach.innerText;
+                const txtValuePackage = tdPackage.textContent || tdPackage.innerText;
+                if (txtValueCoach.toLowerCase().indexOf(filter) > -1 || txtValuePackage.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
 </body>
 </html>

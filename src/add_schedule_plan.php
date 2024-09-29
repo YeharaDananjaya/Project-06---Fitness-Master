@@ -1,4 +1,7 @@
 <?php
+
+ob_start(); 
+session_start();
 // Include navbar and database connection
 include("navbar.php");
 include("db.php"); // Ensure db.php sets up a MySQLi connection
@@ -25,7 +28,6 @@ if (isset($_POST['add_schedule_plan'])) {
         
         if ($con->query($sql) === TRUE) {
             // Set the feedback message in the session
-            session_start();
             $_SESSION['feedbackMessage'] = "Workout plan added successfully!";
 
             // Redirect to the view schedule page
@@ -36,6 +38,7 @@ if (isset($_POST['add_schedule_plan'])) {
         }
     }
 }
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
