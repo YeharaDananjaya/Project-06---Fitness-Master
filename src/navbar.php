@@ -1,6 +1,8 @@
 <?php
 
-session_start(); 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Include your database connection file
 require('db.php'); // Ensure db.php sets up a MySQLi connection
 

@@ -22,40 +22,46 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Master - View Schedule Plans</title>
-    <link rel="stylesheet" href="./styles/feedbackstyle.css"> <!-- External CSS -->
+    <link rel="stylesheet" href="./styles/schedules.css"> <!-- Link to external CSS -->
 </head>
 <body>
-    <div class="container">
-        <h1>Your Schedule Plans</h1>
 
-        <table>
-            <thead>
+<div class="add-schedule-container">
+    <a href="add_schedule_plan.php" class="add-schedule-button">Add a Schedule</a>
+</div>
+
+
+<div class="container">
+    <h1>Your Schedule Plans</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Plan ID</th>
+                <th>Coach</th>
+                <th>Package</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Sessions</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = $result->fetch_assoc()) { ?>
                 <tr>
-                    <th>Plan ID</th>
-                    <th>Coach</th>
-                    <th>Package</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Sessions</th>
-                    <th>Status</th>
+                    <td data-label="Plan ID"><?php echo $row['plan_id']; ?></td>
+                    <td data-label="Coach"><?php echo $row['coach_name']; ?></td>
+                    <td data-label="Package"><?php echo $row['package_name']; ?></td>
+                    <td data-label="Start Date"><?php echo $row['start_date']; ?></td>
+                    <td data-label="End Date"><?php echo $row['end_date']; ?></td>
+                    <td data-label="Sessions"><?php echo $row['session_count']; ?></td>
+                    <td data-label="Status"><?php echo $row['status']; ?></td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?php echo $row['plan_id']; ?></td>
-                        <td><?php echo $row['coach_name']; ?></td>
-                        <td><?php echo $row['package_name']; ?></td>
-                        <td><?php echo $row['start_date']; ?></td>
-                        <td><?php echo $row['end_date']; ?></td>
-                        <td><?php echo $row['session_count']; ?></td>
-                        <td><?php echo $row['status']; ?></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
 
-    <?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
 </body>
 </html>
