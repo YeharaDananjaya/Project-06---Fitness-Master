@@ -4,12 +4,12 @@ session_start();
 
 // Check if the user is already logged in
 if (isset($_SESSION['email'])) {
-    header("Location: home.php"); // Redirect to welcome page or dashboard
+    header("Location: home.php"); // Redirect to home page or dashboard
     exit();
 }
 
 // Include your database connection file
-require('db.php'); 
+require('db.php');
 
 // Handle login logic
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,18 +26,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($result && $result->num_rows === 1) {
             $user = $result->fetch_assoc();
-            // Verify the password
-            if (password_verify($password, $user['password'])) {
-                // Successful login
-                $_SESSION['email'] = $user['email']; // Store user email in session
-                header("Location: home.php"); // Redirect to a protected page
-                exit();
-            } else {
-                // Invalid password
-                $error = "Invalid email or password";
+            
+            // Check user type
+            if ($user['type'] == 1) { // Admin login
+                // Admin password is stored in plain text, so verify directly
+                if ($password === $user['password']) {
+                    // Successful login for admin
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['type'] = $user['type']; // Store user type in session
+                    header("Location: viewCoaches.php"); // Redirect to admin dashboard
+                    exit();
+                } else {
+                    $error = "Invalid email or password";
+                }
+            } else { // Customer login
+                // For customers, password is hashed, so use password_verify
+                if (password_verify($password, $user['password'])) {
+                    // Successful login for customer
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['type'] = $user['type']; // Store user type in session
+                    header("Location: home.php"); // Redirect to customer home page
+                    exit();
+                } else {
+                    $error = "Invalid email or password";
+                }
             }
         } else {
-            // Invalid credentials
             $error = "Invalid email or password";
         }
 
@@ -61,7 +75,7 @@ if (isset($con)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Master - Login</title>
-    <link rel="stylesheet" type="text/css" href="styles/loginstyle.css"> 
+    <link rel="stylesheet" type="text/css" href="styles/loginstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
@@ -106,6 +120,6 @@ if (isset($con)) {
     </div>
 </div>
 
-<?php include 'footer.php'; ?> 
+<?php include 'footer.php'; ?>
 </body>
 </html>
