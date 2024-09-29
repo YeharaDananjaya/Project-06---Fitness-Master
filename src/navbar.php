@@ -17,10 +17,10 @@
                         <a href="home.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Home</a>
                     </li>
                     <li>
-                        <a href="add_schedule.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Get a Coach</a>
+                        <a href="add_schedule_plan.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Get a Coach</a>
                     </li>
                     <li>
-                        <a href="tips.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Tips</a>
+                        <a href="view_schedule.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Tips</a>
                     </li>
                     <li>
                         <a href="manage_feedbacks.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Feedbacks</a>
