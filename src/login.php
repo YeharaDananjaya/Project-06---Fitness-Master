@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is already logged in
 if (isset($_SESSION['email'])) {
-    header("Location: welcome.php"); // Redirect to welcome page or dashboard
+    header("Location: home.php"); // Redirect to welcome page or dashboard
     exit();
 }
 
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password_verify($password, $user['password'])) {
                 // Successful login
                 $_SESSION['email'] = $user['email']; // Store user email in session
-                header("Location: profile.php"); // Redirect to a protected page
+                header("Location: home.php"); // Redirect to a protected page
                 exit();
             } else {
                 // Invalid password
@@ -73,7 +73,7 @@ if (isset($con)) {
         <ul>
             <li><a href="register.php">Sign Up</a></li>
             <li><a href="login.php" class="active">Sign In</a></li>
-            <li><a href="about.php">About Us</a></li>
+            <li><a href="bmi.php">Calculate BMI</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
     </nav>

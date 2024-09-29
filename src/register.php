@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <ul>
             <li><a href="login.php">Sign In</a></li>
             <li><a href="register.php" class="active">Sign Up</a></li>
-            <li><a href="about.php">About Us</a></li>
+            <li><a href="bmi.php">Calculate BMI</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
     </nav>

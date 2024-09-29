@@ -1,7 +1,7 @@
 <?php
 // Include navbar and database connection
 include("navbar.php");
-include("db.php");
+include("db.php"); // Make sure db.php sets up a MySQLi connection
 
 // CREATE Feedback
 if (isset($_POST['add_feedback'])) {
@@ -16,26 +16,25 @@ if (isset($_POST['add_feedback'])) {
     if (empty($user_id) || empty($coach_id) || empty($rating) || empty($system_rating) || empty($comments)) {
         $feedbackMessage = "All fields are required!";
     } else {
-        // Prepare and execute the SQL insert statement
+        // Prepare the SQL insert statement
         $sql = "INSERT INTO feedbacks (user_id, coach_id, rating, system_rating, comments, improvement_suggestions) 
-                VALUES (:user_id, :coach_id, :rating, :system_rating, :comments, :improvement_suggestions)";
+                VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($sql);
-        $stmt->execute([
-            ':user_id' => $user_id,
-            ':coach_id' => $coach_id,
-            ':rating' => $rating,
-            ':system_rating' => $system_rating,
-            ':comments' => $comments,
-            ':improvement_suggestions' => $improvement_suggestions
-        ]);
 
-         // Set the feedback message in the session
-    session_start(); // Start session to store feedback message
-    $_SESSION['feedbackMessage'] = "Feedback added successfully!";
-    
-    // Redirect to the same page to prevent resubmission
-    header("Location: manage_feedbacks.php");
-    exit(); // Terminate script after redirection
+        // Bind parameters and execute
+        $stmt->bind_param('iiisss', $user_id, $coach_id, $rating, $system_rating, $comments, $improvement_suggestions);
+
+        if ($stmt->execute()) {
+            // Set the feedback message in the session
+            session_start();
+            $_SESSION['feedbackMessage'] = "Feedback added successfully!";
+
+            // Redirect to the same page to prevent resubmission
+            header("Location: manage_feedbacks.php");
+            exit(); // Terminate script after redirection
+        } else {
+            $feedbackMessage = "Error: " . $con->error;
+        }
     }
 }
 ?>
@@ -48,20 +47,19 @@ if (isset($_POST['add_feedback'])) {
     <title>Fitness Master - Add Feedback</title>
     <link rel="stylesheet" href="./styles/feedbackstyle.css"> <!-- External CSS -->
     <style>
-    .star-rating {
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-    }
-    .star {
-        font-size: 50px; /* Increase the font size for larger stars */
-        color: #ccc;
-        transition: color 0.2s;
-    }
-    .star:hover,
-    .star.selected {
-        color: #500a0a; /* Yellow color for hovered and selected stars */
-    }
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .star {
+            font-size: 50px;
+            color: #ccc;
+            transition: color 0.2s;
+        }
+        .star:hover, .star.selected {
+            color: #500a0a;
+        }
     </style>
 </head>
 <body>
@@ -93,8 +91,9 @@ if (isset($_POST['add_feedback'])) {
                         <?php
                         // Fetch coaches from the database
                         $sql = "SELECT coach_id, name FROM coaches";
-                        $stmt = $con->query($sql);
-                        while ($coach = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $result = $con->query($sql);
+
+                        while ($coach = $result->fetch_assoc()) {
                             echo "<option value='{$coach['coach_id']}'>{$coach['name']}</option>";
                         }
                         ?>
@@ -112,7 +111,7 @@ if (isset($_POST['add_feedback'])) {
                     </div>
                     <input type="hidden" name="rating" class="rating" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="comments">Comments:</label>
                     <textarea name="comments" required class="form-textarea" id="comments"></textarea>
@@ -129,8 +128,6 @@ if (isset($_POST['add_feedback'])) {
                 </div>
             </form>
         </div>
-        
-        
     </div>
 
     <script>
@@ -140,7 +137,6 @@ if (isset($_POST['add_feedback'])) {
             const stars = rating.querySelectorAll('.star');
             stars.forEach(star => {
                 star.addEventListener('mouseover', () => {
-                    // Highlight stars on hover
                     stars.forEach(s => s.classList.remove('selected'));
                     star.classList.add('selected');
                     let previousSibling = star.previousElementSibling;
@@ -151,9 +147,7 @@ if (isset($_POST['add_feedback'])) {
                 });
 
                 star.addEventListener('mouseout', () => {
-                    // Remove hover effect
                     stars.forEach(s => s.classList.remove('selected'));
-                    // Set back the rating based on previously selected value
                     const currentRating = rating.getAttribute('data-rating');
                     if (currentRating) {
                         stars.forEach(s => {
@@ -170,7 +164,6 @@ if (isset($_POST['add_feedback'])) {
                     rating.setAttribute('data-rating', ratingValue);
                     ratingInput.value = ratingValue;
 
-                    // Clear previous selected stars
                     stars.forEach(s => s.classList.remove('selected'));
                     star.classList.add('selected');
                     let previousSibling = star.previousElementSibling;
@@ -189,7 +182,6 @@ if (isset($_POST['add_feedback'])) {
             const systemRating = document.querySelector(".system_rating").value;
             const rating = document.querySelector(".rating").value;
 
-            // Verify all fields are filled
             if (coachId === "") {
                 alert("Please select a coach.");
                 return false;
@@ -210,7 +202,7 @@ if (isset($_POST['add_feedback'])) {
                 return false;
             }
 
-            return true; // All validations passed
+            return true;
         }
     </script>
 </body>

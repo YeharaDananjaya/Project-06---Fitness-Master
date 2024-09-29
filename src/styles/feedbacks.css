@@ -1,151 +1,147 @@
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #6d090985, #24010177); /* Gradient background */
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    text-align: center;
-    color: #500a0a;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the body takes the full height */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  flex: 1; /* Allow the container to grow and take available space */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50; /* Darker color for the heading */
 }
 
 .btn-container {
-    text-align: center;
-    margin-bottom: 20px; /* Spacing below the button */
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
 
 .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px; /* Added gap between cards */
+}
+.feedback-card-container {
+  margin-top: 20px; /* Add space between the button and the card grid */
 }
 
 .feedback-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  flex: 1 1 calc(33.333% - 20px); /* 3 cards per row with gap adjustment */
+  box-sizing: border-box;
+  transition: transform 0.2s; /* Animation on hover */
+  min-width: 300px; /* Minimum width for cards */
 }
 
 .feedback-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02); /* Slight zoom effect on hover */
 }
 
 .card-header {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
-    text-align: center; /* Center header text */
+  margin-bottom: 15px;
 }
 
-.card-body p {
-    margin: 5px 0;
+.card-body {
+  margin-bottom: 15px;
 }
 
 .card-footer {
-    text-align: right;
-    margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .btn {
-    background-color: #500a0a;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    display: inline-block; /* Ensure block-level styling */
-    transition: background-color 0.3s;
+  background-color: #5c646c;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; /* for anchor tags */
+  transition: background-color 0.3s; /* Smooth transition */
 }
 
 .btn:hover {
-    background-color: #700b0b;
+  background-color: #4a5456; /* Darker on hover */
 }
 
-.delete {
-    background-color: #e74c3c; /* Red for delete button */
+.btn.edit {
+  background-color: #e76f51; /* Different color for edit button */
 }
 
-.delete:hover {
-    background-color: #c0392b; /* Darker red on hover */
+.btn.edit:hover {
+  background-color: #cf5e4d; /* Darker on hover */
 }
-/* Existing Modal Styles */
+
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
-    padding-top: 60px;
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding-top: 60px;
 }
 
 .modal-content {
-    background-color: #ffffff;
-    margin: 5% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    width: 90%; /* Adjusted for better responsiveness */
-    max-width: 600px; /* Max width */
-    direction: ltr; /* Set direction to left-to-right */
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px; /* Maximum width of modal */
+  border-radius: 10px; /* Rounded corners */
 }
 
-/* Close button styles */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
-/* Close button hover effect */
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-/* New Styles for Form Elements */
 .form-group {
-    margin-bottom: 15px; /* Spacing between fields */
+  margin-bottom: 15px;
 }
 
 .form-input,
 .form-textarea {
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding */
-    border: 1px solid #ccc; /* Border */
-    border-radius: 5px; /* Rounded corners */
-    box-sizing: border-box; /* Include padding in width */
-    font-size: 16px; /* Font size */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .form-textarea {
-    height: 100px; /* Height for textarea */
-    resize: none; /* Disable resizing */
+  height: 100px; /* Set a fixed height for the textarea */
 }
 
-.modal-title {
-    margin-bottom: 20px; /* Spacing below title */
-    font-size: 24px; /* Title font size */
-    color: #333; /* Title color */
+.star-rating {
+  color: gold; /* Change the star color */
 }
