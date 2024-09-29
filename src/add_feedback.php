@@ -205,5 +205,6 @@ if (isset($_POST['add_feedback'])) {
             return true;
         }
     </script>
+     <?php include 'footer.php'; ?>
 </body>
 </html>

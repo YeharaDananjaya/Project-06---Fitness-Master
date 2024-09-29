@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_feedback'])) {
             }
         }
     </script>
-   
+   <?php include 'footer.php'; ?>
 </body>
 </html>
 

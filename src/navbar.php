@@ -6,7 +6,7 @@
     <title>Fitness Master</title>
 </head>
 <body style="margin: 0; font-family: Arial, sans-serif; ">
-    <header style=" padding: 15px 0;">
+    <header style=" padding: 15px 0;background-color: #1c3d3f;">
         <div style="max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
             <div class="logo">
                 <a href="#" style="text-decoration: none; color: white; font-size: 24px; font-weight: bold;">Fitness Master</a>
