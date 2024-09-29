@@ -95,7 +95,7 @@ if (isset($_POST['logout'])) {
                     </li>
                     <li class="dropdown">
                         <a href="javascript:void(0);" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; position: relative;">
-                            <img src="images/profile-icon.png" alt="Profile" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px;">Profile
+                            <img src="images/profile-icon.png" alt="Profile" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px;">
                         </a>
                         <div class="dropdown-content">
                             <a href="profile.php">User Profile</a>

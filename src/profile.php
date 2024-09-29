@@ -112,7 +112,7 @@ if (isset($_POST['delete'])) {
 <div class="profile-container">
     <div class="sidebar">
         <div class="profile-info">
-            <img src="path_to_profile_image" alt="User Profile" class="profile-image">
+            <img src="images/profile-icon.jpg" alt="User Profile" class="profile-image">
             <h2><?php echo htmlspecialchars($user['name']); ?></h2>
             <p>Membership State</p>
         </div>
