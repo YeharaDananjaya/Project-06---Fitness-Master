@@ -158,6 +158,35 @@ INSERT INTO `diet_plans` (`diet_id`, `plan_id`, `meal_plan`, `description`, `not
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `schedules`
+--
+
+CREATE TABLE `schedules` (
+  `schedule_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `coach_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `start_time` DATETIME NOT NULL,
+  `end_time` DATETIME NOT NULL,
+  `workout_plan_id` INT(11) DEFAULT NULL,
+  `diet_plan_id` INT(11) DEFAULT NULL,
+  `notes` TEXT,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`schedule_id`),
+  FOREIGN KEY (`coach_id`) REFERENCES `coaches`(`coach_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`workout_plan_id`) REFERENCES `workout_plans`(`plan_id`) ON DELETE SET NULL,
+  FOREIGN KEY (`diet_plan_id`) REFERENCES `diet_plans`(`diet_id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+--
+-- Dumping data for table `schedules`
+--
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `feedbacks`
 --
 
