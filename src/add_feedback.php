@@ -1,4 +1,6 @@
 <?php
+// Start the session
+session_start();
 // Include navbar and database connection
 include("navbar.php");
 include("db.php"); // Make sure db.php sets up a MySQLi connection
@@ -45,21 +47,118 @@ if (isset($_POST['add_feedback'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Master - Add Feedback</title>
-    <link rel="stylesheet" href="./styles/feedbackstyle.css"> <!-- External CSS -->
+   
     <style>
-        .star-rating {
-            display: flex;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .star {
-            font-size: 50px;
-            color: #ccc;
-            transition: color 0.2s;
-        }
-        .star:hover, .star.selected {
-            color: #500a0a;
-        }
+        body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+h1 {
+    text-align: center;
+    color: #1c3d3f;
+    margin-bottom: 20px;
+}
+
+.feedback-message {
+    background: #d4edda;
+    color: #1c3d3f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-select, .form-input, .form-textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+}
+
+.form-select:focus, .form-input:focus, .form-textarea:focus {
+    border-color: #1c3d3f;
+    outline: none;
+}
+
+.form-textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    padding: 10px;
+    background-color: #1c3d3f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #152e30;
+}
+
+.link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #1c3d3f;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+.star-rating {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.star {
+    font-size: 50px; /* Increase the font size for larger stars */
+    color: #ccc;
+    transition: color 0.2s;
+}
+.star:hover,
+.star.selected {
+    color: #f1c40f; /* Yellow color for hovered and selected stars */
+}
+        
     </style>
 </head>
 <body>
