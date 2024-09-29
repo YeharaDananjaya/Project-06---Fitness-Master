@@ -1,7 +1,34 @@
 <?php
-// Include navbar and database connection
+
 include("navbar.php");
-include("db.php"); // Ensure db.php sets up a MySQLi connection
+include("db.php");
+session_start();
+// Handle delete request
+if (isset($_GET['delete_plan_id'])) {
+    $plan_id = $_GET['delete_plan_id'];
+    $sql = "DELETE FROM workout_plans WHERE plan_id = ?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param('i', $plan_id);
+    $stmt->execute();
+    header("Location: schedule_manager.php"); // Redirect back to the same page
+    exit();
+}
+
+// Handle update request
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['plan_id'])) {
+    $plan_id = $_POST['plan_id'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $session_count = $_POST['session_count'];
+    $status = $_POST['status'];
+
+    $sql = "UPDATE workout_plans SET start_date=?, end_date=?, session_count=?, status=? WHERE plan_id=?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param('ssisi', $start_date, $end_date, $session_count, $status, $plan_id);
+    $stmt->execute();
+    header("Location: schedule_manager.php"); // Redirect back to the same page
+    exit();
+}
 
 // Fetch all workout plans for the user
 $user_id = 1; // Example user_id
@@ -21,7 +48,7 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Master - View Schedule Plans</title>
+    <title>Fitness Master - Manage Schedule Plans</title>
     <link rel="stylesheet" href="./styles/schedules.css"> <!-- Link to external CSS -->
 </head>
 <body>
@@ -48,6 +75,7 @@ $result = $stmt->get_result();
                 <th>End Date</th>
                 <th>Sessions</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -60,7 +88,35 @@ $result = $stmt->get_result();
                     <td data-label="End Date"><?php echo $row['end_date']; ?></td>
                     <td data-label="Sessions"><?php echo $row['session_count']; ?></td>
                     <td data-label="Status"><?php echo $row['status']; ?></td>
+                    <td data-label="Actions">
+                        <a href="#editModal<?php echo $row['plan_id']; ?>" class="edit-button" onclick="openModal(<?php echo $row['plan_id']; ?>)">Edit</a>
+                        <a href="?delete_plan_id=<?php echo $row['plan_id']; ?>" class="delete-button" onclick="return confirm('Are you sure you want to delete this plan?');">Delete</a>
+                    </td>
                 </tr>
+
+                <!-- Edit Modal -->
+                <div id="editModal<?php echo $row['plan_id']; ?>" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal(<?php echo $row['plan_id']; ?>)">&times;</span>
+                        <h2>Edit Schedule Plan</h2>
+                        <form action="" method="post">
+                            <input type="hidden" name="plan_id" value="<?php echo $row['plan_id']; ?>">
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" name="start_date" value="<?php echo $row['start_date']; ?>" required>
+                            <label for="end_date">End Date:</label>
+                            <input type="date" name="end_date" value="<?php echo $row['end_date']; ?>" required>
+                            <label for="session_count">Sessions:</label>
+                            <input type="number" name="session_count" value="<?php echo $row['session_count']; ?>" required>
+                            <label for="status">Status:</label>
+                            <select name="status">
+                                <option value="active" <?php if($row['status'] == 'active') echo 'selected'; ?>>Active</option>
+                                <option value="inactive" <?php if($row['status'] == 'inactive') echo 'selected'; ?>>Inactive</option>
+                            </select>
+                            <button type="submit">Update Plan</button>
+                        </form>
+                    </div>
+                </div>
+
             <?php } ?>
         </tbody>
     </table>
@@ -89,7 +145,62 @@ $result = $stmt->get_result();
             }
         }
     }
+
+    function openModal(planId) {
+        document.getElementById("editModal" + planId).style.display = "block";
+    }
+
+    function closeModal(planId) {
+        document.getElementById("editModal" + planId).style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        const modals = document.getElementsByClassName('modal');
+        for (let i = 0; i < modals.length; i++) {
+            if (event.target == modals[i]) {
+                modals[i].style.display = "none";
+            }
+        }
+    }
 </script>
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
 
 </body>
 </html>
