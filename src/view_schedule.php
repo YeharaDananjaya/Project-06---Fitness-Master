@@ -52,7 +52,6 @@ $result = $stmt->get_result();
 
 // Include navbar after handling header-modifying logic
 include("navbar.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +61,33 @@ include("navbar.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Master - Manage Schedule Plans</title>
     <link rel="stylesheet" href="./styles/schedules.css"> <!-- Link to external CSS -->
+    <style>
+        .edit-button, .delete-button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .edit-button {
+            background-color: #4caf50; /* Green */
+        }
+
+        .edit-button:hover {
+            background-color: #45a049; /* Darker green */
+        }
+
+        .delete-button {
+            background-color: #f44336; /* Red */
+        }
+
+        .delete-button:hover {
+            background-color: #da190b; /* Darker red */
+        }
+    </style>
 </head>
 <body>
 
@@ -106,28 +132,41 @@ include("navbar.php");
                     </td>
                 </tr>
 
-                <!-- Edit Modal -->
-                <div id="editModal<?php echo $row['plan_id']; ?>" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal(<?php echo $row['plan_id']; ?>)">&times;</span>
-                        <h2>Edit Schedule Plan</h2>
-                        <form action="" method="post">
-                            <input type="hidden" name="plan_id" value="<?php echo $row['plan_id']; ?>">
-                            <label for="start_date">Start Date:</label>
-                            <input type="date" name="start_date" value="<?php echo $row['start_date']; ?>" required>
-                            <label for="end_date">End Date:</label>
-                            <input type="date" name="end_date" value="<?php echo $row['end_date']; ?>" required>
-                            <label for="session_count">Sessions:</label>
-                            <input type="number" name="session_count" value="<?php echo $row['session_count']; ?>" required>
-                            <label for="status">Status:</label>
-                            <select name="status">
-                                <option value="active" <?php if($row['status'] == 'active') echo 'selected'; ?>>Active</option>
-                                <option value="inactive" <?php if($row['status'] == 'inactive') echo 'selected'; ?>>Inactive</option>
-                            </select>
-                            <button type="submit">Update Plan</button>
-                        </form>
-                    </div>
-                </div>
+              <!-- Edit Modal -->
+<div id="editModal<?php echo $row['plan_id']; ?>" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal(<?php echo $row['plan_id']; ?>)">&times;</span>
+        <h2>Edit Schedule Plan</h2>
+        <form action="" method="post">
+            <input type="hidden" name="plan_id" value="<?php echo $row['plan_id']; ?>">
+            
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" name="start_date" value="<?php echo $row['start_date']; ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date" name="end_date" value="<?php echo $row['end_date']; ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="session_count">Sessions:</label>
+                <input type="number" name="session_count" value="<?php echo $row['session_count']; ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select name="status">
+                    <option value="active" <?php if($row['status'] == 'active') echo 'selected'; ?>>Active</option>
+                    <option value="inactive" <?php if($row['status'] == 'inactive') echo 'selected'; ?>>Inactive</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-button">Update Plan</button>
+        </form>
+    </div>
+</div>
 
             <?php } ?>
         </tbody>
@@ -211,6 +250,40 @@ include("navbar.php");
         color: black;
         text-decoration: none;
         cursor: pointer;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input, 
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    .submit-button {
+        background-color: #4caf50; /* Green */
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .submit-button:hover {
+        background-color: #45a049; /* Darker green */
     }
 </style>
 
