@@ -1,8 +1,16 @@
 <?php
-
-include("navbar.php");
 include("db.php");
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
+
 // Handle delete request
 if (isset($_GET['delete_plan_id'])) {
     $plan_id = $_GET['delete_plan_id'];
@@ -10,7 +18,7 @@ if (isset($_GET['delete_plan_id'])) {
     $stmt = $con->prepare($sql);
     $stmt->bind_param('i', $plan_id);
     $stmt->execute();
-    header("Location: schedule_manager.php"); // Redirect back to the same page
+    header("Location: schedule_manager.php");
     exit();
 }
 
@@ -26,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['plan_id'])) {
     $stmt = $con->prepare($sql);
     $stmt->bind_param('ssisi', $start_date, $end_date, $session_count, $status, $plan_id);
     $stmt->execute();
-    header("Location: schedule_manager.php"); // Redirect back to the same page
+    header("Location: view_schedule.php");
     exit();
 }
 
@@ -41,6 +49,10 @@ $stmt = $con->prepare($sql);
 $stmt->bind_param('i', $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
+
+// Include navbar after handling header-modifying logic
+include("navbar.php");
+
 ?>
 
 <!DOCTYPE html>
