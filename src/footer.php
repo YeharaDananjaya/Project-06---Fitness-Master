@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- 
 </head>
 <body>
     <footer style="background-color: #1c3d3f; color: #fafafa; padding: 2rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-between;">
@@ -39,7 +38,7 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom" style="text-align: center; margin-top: 2rem; border-top: 1px solid #4ecdc4; padding-top: 1rem;">
+        <div class="footer-bottom" style="text-align: center; width: 100%; margin-top: 2rem; border-top: 1px solid #4ecdc4; padding-top: 1rem;">
             <p style="font-size: 0.9rem; margin: 0.5rem 0;">Copyright © All rights reserved - 2024 Designed by SLIT Matara Center, Group 08</p>
             <ul class="bottom-links" style="list-style: none; padding: 0; display: flex; justify-content: center; gap: 1.5rem;">
                 <li><a href="#" style="color: #fafafa; text-decoration: none; transition: color 0.3s;">Terms & Conditions</a></li>
