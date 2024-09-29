@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        .footer {
+    opacity: 0; /* Start as invisible */
+    transition: opacity 1s ease-in; /* Smooth transition */
+}
+
+.footer.visible {
+    opacity: 1; /* Fade in */
+}
+
+    </style>
 </head>
 <body>
-    <footer style="background-color: #1c3d3f; color: #fafafa; padding: 2rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-between;">
+    <footer id="footer" class="footer hidden" style="background-color: #1c3d3f; color: #fafafa; padding: 2rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-between;">
         <div class="footer-container" style="flex: 1; display: flex; justify-content: space-between; width: 100%;">
             <div class="footer-section" style="flex: 1; margin: 1rem;">
                 <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #4ecdc4;">Company</h3>
@@ -44,7 +55,6 @@
                 <li><a href="#" style="color: #fafafa; text-decoration: none; transition: color 0.3s;">Terms & Conditions</a></li>
                 <li><a href="#" style="color: #fafafa; text-decoration: none; transition: color 0.3s;">Privacy Policy</a></li>
             </ul>
-            <!-- Social Media Icons -->
             <div class="social-icons" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
                 <a href="#"><img src="images/facebook-icon.png" alt="Facebook" style="width: 32px; height: 32px; transition: transform 0.3s;"></a>
                 <a href="#"><img src="images/twitter-icon.png" alt="Twitter" style="width: 32px; height: 32px; transition: transform 0.3s;"></a>
@@ -52,5 +62,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/footer.js"></script> <!-- Link to your JavaScript -->
 </body>
 </html>
