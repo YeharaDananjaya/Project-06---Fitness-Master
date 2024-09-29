@@ -1,3 +1,16 @@
+<?php
+
+
+// Include your database connection file
+require('db.php'); // Ensure db.php sets up a MySQLi connection
+
+// Handle logout
+if (isset($_POST['logout'])) {
+    session_destroy(); // Destroy the session
+    header("Location: login.php"); // Redirect to login after logout
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,14 +42,25 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle">Diets</a>
                 <ul class="dropdown-menu">
-                    <li><a href="addDiets.php">Add Diets</a></li>
-                    <li><a href="viewDiets.php">View Diets</a></li>
+                    <li><a href="addDiet_plans.php">Add Diets</a></li>
+                    <li><a href="manageDiet_plans.php">View Diets</a></li>
                 </ul>
             </li>
             <li><a href="customerFeedbacks.php">Feedbacks</a></li>
-            <li><a href="logout.php" class="logout-button">Log Out</a></li>
+
+            <!-- Logout button with inline styles -->
+            <li>
+                <form id="logoutForm" action="" method="POST" style="display: inline;">
+                    <button type="submit" name="logout" 
+                        style="background-color: #e76f51; color: #fff; border: none; padding: 10px 15px; 
+                               border-radius: 5px; cursor: pointer; font-size: 16px; 
+                               transition: background-color 0.3s ease; width: 100%; text-align: center;"
+                        onclick="return confirmLogout()">Log Out</button>
+                </form>
+            </li>
         </ul>
     </div>
+
     <script>
         // JavaScript for dropdown toggle
         document.querySelectorAll('.dropdown-toggle').forEach(item => {
@@ -55,6 +79,11 @@
                 });
             }
         });
+
+        // Confirmation for logout
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
     </script>
 </body>
 </html>

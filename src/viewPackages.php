@@ -49,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_package'])) {
         $error = "Error updating package: " . $stmt->error;
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -98,12 +97,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_package'])) {
 
 <?php include('sidebar.php'); ?> <!-- Sidebar -->
 
-<div class="container">
+
+<div class="header-container">
     <h2>Available Membership Packages</h2>
+</div>
+    <div class="container">
     <?php while ($row = $result->fetch_assoc()): ?>
     <div class="package-card">
         <div class="package-icon">
-            <img src="path_to_icon" alt="Package Icon"> <!-- Replace with actual icon path -->
+            <img src="images/gym.svg" alt="Package Icon"> <!-- Replace with actual icon path -->
         </div>
         <div class="package-name"><?php echo htmlspecialchars($row['package_name']); ?></div>
         <div class="package-details"><?php echo htmlspecialchars($row['description']); ?></div>

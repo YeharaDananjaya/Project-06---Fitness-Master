@@ -15,7 +15,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  overflow: visible; /* Allow dropdowns to be visible outside */
+  overflow: visible;
 }
 
 .sidebar-logo img {
@@ -30,7 +30,7 @@ body {
 
 .sidebar-menu li {
   margin: 15px 0;
-  position: relative; /* Required for dropdown positioning */
+  position: relative;
 }
 
 .sidebar-menu li a {
@@ -40,50 +40,64 @@ body {
   display: block;
   width: 100%;
   text-align: center;
-  padding: 10px; /* Unified padding for consistency */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover */
+  padding: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .sidebar-menu li a:hover,
 .sidebar-menu li a.active {
   background-color: #379d9d;
   border-radius: 5px;
-  transform: scale(1.02); /* Slightly enlarge on hover */
+  transform: scale(1.02);
 }
 
 /* Dropdown Styles */
 .dropdown-menu {
-  display: none; /* Hide dropdown by default */
+  display: none;
   list-style-type: none;
   padding: 0;
   margin: 0;
-  background-color: #2b4f4e; /* Slightly different background */
+  background-color: #2b4f4e;
   border-radius: 5px;
-  position: absolute; /* Absolute positioning for dropdown */
-  left: 100%; /* Position to the right of the dropdown toggle */
-  top: 0; /* Align to the top of the toggle */
-  width: 200px; /* Set the width for the dropdown */
-  z-index: 10; /* Increase z-index to ensure dropdown appears above other elements */
-  opacity: 0; /* Initial opacity for animation */
-  transition: opacity 0.2s ease; /* Smooth transition for dropdown */
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 200px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .dropdown-menu.show {
-  display: block; /* Show dropdown */
-  opacity: 1; /* Full opacity when shown */
-}
-
-.dropdown-menu li {
-  margin: 0; /* Reset margin for dropdown items */
+  display: block;
+  opacity: 1;
 }
 
 .dropdown-menu li a {
-  padding: 10px; /* Padding for dropdown items */
-  text-align: left; /* Left align text in dropdown */
-  display: block; /* Make sure it occupies full width */
-  transition: background-color 0.3s ease; /* Transition for background color */
+  padding: 10px;
+  text-align: left;
+  display: block;
+  transition: background-color 0.3s ease;
 }
 
 .dropdown-menu li a:hover {
-  background-color: #3b8c8b; /* Darker shade for hover effect */
+  background-color: #3b8c8b;
+}
+
+/* Logout Button */
+.logout-button {
+  background-color: #e76f51;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.logout-button:hover {
+  background-color: #d35b45;
 }
