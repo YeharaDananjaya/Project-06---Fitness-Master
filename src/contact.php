@@ -1,7 +1,4 @@
-<?php
-// Include navbar
-include("navbar.php");
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +9,20 @@ include("navbar.php");
     <link rel="stylesheet" href="styles/style.css"> <!-- External CSS -->
     <script src="js/scripts.js" defer></script> <!-- External JavaScript -->
 </head>
+<header style="background-color: #1c3d3f; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <div class="logo">
+        <a href="#" style="font-family: 'Russo One', sans-serif; font-size: 32px; color: white; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#4ecdcc'" onmouseout="this.style.color='white'">Fitness Master</a>
+    </div>
+    <nav style="display: flex;">
+        <ul style="list-style: none; display: flex; gap: 20px; margin: 0;">
+            <li><a href="register.php" style="color: white; text-decoration: none; font-size: 18px; padding: 10px 15px; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#4ecdcc'; this.style.borderRadius='5px'" onmouseout="this.style.backgroundColor=''; this.style.borderRadius=''">Sign Up</a></li>
+            <li><a href="login.php" style="color: white; text-decoration: none; font-size: 18px; padding: 10px 15px; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#4ecdcc'; this.style.borderRadius='5px'" onmouseout="this.style.backgroundColor=''; this.style.borderRadius=''">Sign In</a></li>
+            <li><a href="bmi.php" class="active" style="color: white; text-decoration: none; font-size: 18px; padding: 10px 15px; transition: background-color 0.3s ease; background-color: #4ecdcc; border-radius: 5px;" onmouseover="this.style.backgroundColor='#4ecdcc'; this.style.borderRadius='5px'" onmouseout="this.style.backgroundColor='#4ecdcc'; this.style.borderRadius='5px'" >Calculate BMI</a></li>
+            <li><a href="contact.php" style="color: white; text-decoration: none; font-size: 18px; padding: 10px 15px; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#4ecdcc'; this.style.borderRadius='5px'" onmouseout="this.style.backgroundColor=''; this.style.borderRadius=''">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
 <body>
     <div class="contact-container">
         <div class="contact-header">
