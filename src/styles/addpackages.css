@@ -3,10 +3,12 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
+  
 }
 
 .form-container,
 .package-list {
+  
   width: 80%;
   margin: 20px auto;
   background-color: white;

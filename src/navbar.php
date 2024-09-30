@@ -89,11 +89,9 @@ if (isset($_POST['logout'])) {
                     <li>
                         <a href="view_schedule.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Schedules</a>
                     </li>
+                   
                     <li>
-                        <a href="view_schedule.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Workout Schedules</a>
-                    </li>
-                    <li>
-                        <a href="" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Tips</a>
+                        <a href="diet_plan.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Tips</a>
                     </li>
                     <li>
                         <a href="manage_feedbacks.php" style="text-decoration: none; color: white; font-weight: 600; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;">Feedbacks</a>
