@@ -18,7 +18,7 @@ if (isset($_GET['delete_plan_id'])) {
     $stmt = $con->prepare($sql);
     $stmt->bind_param('i', $plan_id);
     $stmt->execute();
-    header("Location: schedule_manager.php");
+    header("Location: view_schedule.php");
     exit();
 }
 
