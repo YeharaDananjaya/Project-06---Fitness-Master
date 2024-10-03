@@ -80,11 +80,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const confirmPassword = document.getElementById('confirm_password').value;
             const passwordError = document.getElementById('password-error');
 
+            if (password === "") {
+                passwordError.innerText = "Password cannot be empty.";
+                passwordError.style.display = "block"; // Show error
+                return false; // Prevent form submission
+            }
+
             if (password !== confirmPassword) {
                 passwordError.innerText = "Passwords do not match.";
+                passwordError.style.display = "block"; // Show error
                 return false; // Prevent form submission
             } else {
                 passwordError.innerText = "";
+                passwordError.style.display = "none"; // Hide error
                 return true; // Valid passwords
             }
         }
@@ -146,9 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="input-group">
-                    <input type="password" class="login-input" id="confirm_password" name="confirm_password" placeholder="Confirm Password" oninput="validatePasswords()" required />
+                    <input type="password" class="login-input" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required />
                     <i class="fas fa-lock"></i>
-                    <p class="error-message" id="password-error"></p>
+                    <p class="error-message" id="password-error" style="display: none;">Passwords do not match.</p>
                 </div>
                 
                 <input type="submit" name="submit" value="Sign Up" class="login-button">

@@ -73,7 +73,7 @@ nav ul li a.active {
   padding: 2rem;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
   width: 100%; /* Full width on smaller screens */
-  max-width: 800px; /* Increased max width for larger screens */
+  max-width: 1000px; /* Increased max width for larger screens */
   transition: transform 0.3s ease; /* Smooth transition for hover effects */
   margin: 0 auto; /* Center the container horizontally */
 }
@@ -99,10 +99,9 @@ nav ul li a.active {
 
 .input-group {
   position: relative;
-  margin-bottom: 1.5rem; /* Increased margin for better spacing */
-  width: 100%; /* Ensure full width for input groups */
+  margin-bottom: 1.5rem;
+  width: 100%;
 }
-
 /* Gender Selection Styles */
 .input-group div {
   margin-bottom: 1.5rem; /* Increased margin below gender selection */
@@ -120,7 +119,7 @@ nav ul li a.active {
 
 .login-input {
   width: 80%;
-  padding: 0.8rem 0.8rem 0.8rem 40px; /* Increased padding for comfort and space for the icon */
+  padding: 0.8rem 0.8rem 0.8rem 40px;
   border: 1px solid #ddd;
   border-radius: 6px; /* Increased border radius for a softer look */
   font-size: 16px; /* Increased font size */
@@ -130,20 +129,27 @@ nav ul li a.active {
 .login-input:focus {
   border-color: #1c3d3f;
   outline: none;
-  box-shadow: 0 0 5px rgba(28, 61, 63, 0.5), 0 0 10px rgba(28, 61, 63, 0.3); /* Enhanced shadow on focus */
+  box-shadow: 0 0 5px rgba(28, 61, 63, 0.5), 0 0 10px rgba(28, 61, 63, 0.3);
 }
 
 .input-group i {
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 10px; /* Ensure the icon stays inside the input */
   transform: translateY(-50%);
   color: #888;
+  pointer-events: none; /* Icon should not block input interaction */
 }
 
 /* Gender Selection Styles */
 .input-group div {
   margin-bottom: 1.5rem; /* Increased margin below gender selection */
+}
+
+input-group i.fas {
+  top: 50%; /* Ensure the icon aligns vertically in the center */
+  transform: translateY(-50%);
+  left: 10px; /* Position the icon inside the input field with spacing */
 }
 
 .error {

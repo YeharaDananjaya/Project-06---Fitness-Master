@@ -9,7 +9,7 @@ require('db.php');
 $success = '';
 $error = '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout']))  {
     // Collect form data
     $package_name = filter_input(INPUT_POST, 'package_name', FILTER_SANITIZE_STRING);
     $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
@@ -18,9 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $features = filter_input(INPUT_POST, 'features', FILTER_SANITIZE_STRING);
 
     // Insert into database
-    $query = "INSERT INTO membership_packages (package_name, price, duration, description, features) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param("sdis", $package_name, $price, $duration, $description, $features);
+$query = "INSERT INTO membership_packages (package_name, price, duration, description, features) VALUES (?, ?, ?, ?, ?)";
+$stmt = $con->prepare($query);
+$stmt->bind_param("sdiss", $package_name, $price, $duration, $description, $features);
+
+if ($stmt->execute()) {
+    $success = "Package created successfully.";
+} else {
+    $error = "Failed to create package. Please try again.";
+}
+
 
     if ($stmt->execute()) {
         $success = "Package created successfully.";

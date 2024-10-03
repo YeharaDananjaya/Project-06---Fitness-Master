@@ -2,7 +2,7 @@
 // Start the session
 session_start();
 // Include navbar and database connection
-include("navbar.php");
+
 include("db.php"); // Make sure db.php sets up a MySQLi connection
 
 // CREATE Feedback
@@ -39,6 +39,7 @@ if (isset($_POST['add_feedback'])) {
         }
     }
 }
+include("navbar.php");
 ?>
 
 <!DOCTYPE html>

@@ -10,7 +10,7 @@ $success = '';
 $error = '';
 
 // Handle coach addition logic
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout']))  {
     // Sanitize and validate inputs
     $name = filter_input(INPUT_POST, 'coach_name', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'coach_email', FILTER_SANITIZE_EMAIL);

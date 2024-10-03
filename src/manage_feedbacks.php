@@ -2,7 +2,7 @@
 // Start the session
 session_start();
 // Include navbar and database connection
-include("navbar.php");
+
 include("db.php");
 
 // READ Feedbacks
@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_feedback'])) {
     header('Location: manage_feedbacks.php');
     exit;
 }
+include("navbar.php");
 ?>
 
 <!DOCTYPE html>
