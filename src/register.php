@@ -5,6 +5,9 @@ session_start();
 // Include your database connection file
 require('db.php'); // Ensure db.php sets up a MySQLi connection
 
+// Initialize a success flag
+$registrationSuccess = false;
+
 // Handle registration logic
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Sanitize and validate inputs
@@ -37,11 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($stmt->execute()) {
                 // Registration successful
                 $_SESSION['name'] = $name; // Store name in session
-                echo "<div class='form-success'>
-                          <h3>You are registered successfully.</h3>
-                          <p class='link'>Click here to <a href='login.php'>Login</a></p>
-                          </div>";
-                exit();
+                $registrationSuccess = true; // Set the success flag
             } else {
                 $error = "Registration failed. Please try again.";
             }
@@ -100,6 +99,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         function validateForm() {
             const email = document.getElementById('email').value;
             return validateEmail(email) && validatePasswords(); // Ensure all validations pass
+        }
+
+        function showSuccessAlert() {
+            alert("You have registered successfully! Click OK to proceed to login.");
+            window.location.href = 'login.php'; // Redirect to login page after alert
         }
     </script>
 </head>
@@ -166,5 +170,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 
 <?php include 'footer.php'; ?> 
+
+<!-- Trigger success alert if registration is successful -->
+<?php if ($registrationSuccess) : ?>
+    <script>
+        showSuccessAlert();
+    </script>
+<?php endif; ?>
+
 </body>
 </html>
